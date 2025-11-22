@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Shuttle.Core.Cli.Tests/Shuttle.Core.Cli.Tests.csproj" />
+  <Project Path="Shuttle.Core.Cli/Shuttle.Core.Cli.csproj" />
+</Solution>

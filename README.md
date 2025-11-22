@@ -1,9 +1,5 @@
 # Shuttle.Core.Cli
 
-```
-PM> Install-Package Shuttle.Core.Cli
-```
-
 Provides the `Arguments` class that gives you access to command-line interface arguments:
 
 ### Constructor

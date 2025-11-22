@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Shuttle.Core.Contract;
 
 namespace Shuttle.Core.Cli;
 
 public class ArgumentDefinition
 {
-    private readonly List<string> _aliases = new();
+    private readonly List<string> _aliases = [];
 
     public ArgumentDefinition(string name, params string[] aliases)
     {
-        Name = Guard.AgainstNullOrEmptyString(name, nameof(name));
+        Name = Guard.AgainstEmpty(name);
 
         _aliases.AddRange(aliases.Where(item => !item.Equals(name, StringComparison.InvariantCultureIgnoreCase)).Distinct());
     }
@@ -30,7 +27,7 @@ public class ArgumentDefinition
 
     public bool IsSatisfiedBy(string name)
     {
-        Guard.AgainstNullOrEmptyString(name, nameof(name));
+        Guard.AgainstEmpty(name);
 
         return Name.Equals(name, StringComparison.InvariantCultureIgnoreCase) || _aliases.Any(item => item.Equals(name, StringComparison.InvariantCultureIgnoreCase));
     }
