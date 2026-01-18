@@ -4,13 +4,20 @@ namespace Shuttle.Core.Cli;
 
 public class ArgumentDefinition
 {
+    public string Description { get; private set; } = string.Empty;
     private readonly List<string> _aliases = [];
 
-    public ArgumentDefinition(string name, params string[] aliases)
+    public ArgumentDefinition(string name , params string[] aliases)
     {
         Name = Guard.AgainstEmpty(name);
 
         _aliases.AddRange(aliases.Where(item => !item.Equals(name, StringComparison.InvariantCultureIgnoreCase)).Distinct());
+    }
+
+    public ArgumentDefinition WithDescription(string description)
+    {
+        Description = Guard.AgainstEmpty(description);
+        return this;
     }
 
     public IEnumerable<string> Aliases => _aliases.AsReadOnly();

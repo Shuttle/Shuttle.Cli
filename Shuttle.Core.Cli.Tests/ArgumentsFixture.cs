@@ -7,6 +7,35 @@ namespace Shuttle.Core.Cli.Tests
     public class ArgumentsFixture
     {
         [Test]
+        public void Should_be_able_to_get_description_text()
+        {
+            var arguments = new Arguments();
+
+            arguments.Add(new ArgumentDefinition("arg1", "a1"));
+            arguments.Add(new ArgumentDefinition("arg5", "a5").WithDescription("Argument 5"));
+            arguments.Add(new ArgumentDefinition("arg10", "a10").WithDescription("Argument 10").AsRequired());
+
+            Assert.That(() => arguments.Add(new ArgumentDefinition("arg1")), Throws.TypeOf<InvalidOperationException>());
+            Assert.That(() => arguments.Add(new ArgumentDefinition("arg2", "a1")), Throws.TypeOf<InvalidOperationException>());
+
+            var definitionText = arguments.GetDefinitionText();
+
+            Assert.That(definitionText.Contains("Argument 5"), Is.True);
+            Assert.That(definitionText.Contains("Argument 10"), Is.True);
+
+            Console.WriteLine(definitionText);
+            
+            Console.WriteLine(@"---");
+
+            definitionText = arguments.GetDefinitionText(required: true);
+
+            Assert.That(definitionText.Contains("Argument 5"), Is.False);
+            Assert.That(definitionText.Contains("Argument 10"), Is.True);
+
+            Console.WriteLine(definitionText);
+        }
+
+        [Test]
         public void Should_not_be_able_to_add_a_duplicate_argument_definition_or_alias()
         {
             var arguments = new Arguments();
@@ -78,6 +107,16 @@ namespace Shuttle.Core.Cli.Tests
             arguments.Add("a2");
 
             Assert.That(arguments.HasMissingValues(), Is.False);
+        }
+
+        [Test]
+        public void Should_be_able_to_parse_arguments_with_quoted_connection_strings()
+        {
+            const string connection = "Data Source=.;Initial Catalog=the-catalog;user id=sa;password=<password>;TrustServerCertificate=true";
+
+            var args = new Arguments("-sc", connection);
+
+            Assert.That(args.Get<string>("sc"), Is.EqualTo(connection));
         }
     }
 }
