@@ -14,7 +14,7 @@ dotnet add package Shuttle.Core.Cli
 public Arguments(params string[] commandLine)
 ```
 
-The `commandLine` is parsed as arguments starting with `-`, `--` or `/` followed by the argument name then either `=` or `:` and then the argument value.
+The `commandLine` is parsed as arguments starting with `-`, `--` or `/` followed by the argument name then either `=`, `:`, or a space, and then the argument value.
 
 The following are valid arguments:
 
@@ -25,9 +25,22 @@ The following are valid arguments:
 -name:value
 --name:value
 /name:value
+-name value
+--name value
+/name value
 ```
 
 The argument name and value may be *quoted* with either a single quote (`'`) or double quote (`"`).
+
+### Boolean Flags
+
+You may also pass boolean flags without a value to automatically assign them the value `"true"`:
+
+```batch
+-flag
+--flag
+/flag
+```
 
 ### Static Factory Method
 
