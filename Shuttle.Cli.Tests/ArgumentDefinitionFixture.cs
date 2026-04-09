@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Shuttle.Core.Cli.Tests;
+namespace Shuttle.Cli.Tests;
 
 [TestFixture]
 public class ArgumentDefinitionFixture

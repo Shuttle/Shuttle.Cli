@@ -1,11 +1,11 @@
-# Shuttle.Core.Cli
+# Shuttle.Cli
 
 Provides the `Arguments` class that gives you access to command-line interface arguments:
 
 ## Installation
 
 ```bash
-dotnet add package Shuttle.Core.Cli
+dotnet add package Shuttle.Cli
 ```
 
 ### Constructor
