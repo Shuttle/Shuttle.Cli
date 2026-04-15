@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Shuttle.Contract" Version="21.0.1-rc3" />
+    <PackageReference Include="Shuttle.Contract" Version="21.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,7 +36,7 @@
 
   <PropertyGroup>
     <Description>Command line argument parser.</Description>
-    <Version>21.0.1-rc3</Version>
+    <Version>21.0.1</Version>
     <PackageProjectUrl>https://github.com/shuttle/Shuttle.Cli</PackageProjectUrl>
     <RepositoryUrl>https://github.com/shuttle/Shuttle.Cli.git</RepositoryUrl>
     <PackageTags>cli commandline</PackageTags>
